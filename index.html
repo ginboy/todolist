@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  
+    <title>测试</title>
+    
+</head>
+<body>
+    <div class="mb-floor-box" id="floorBox">
+       测试页面
+           
+    </div>
+    <script>
+        console.log("js触发")
+        let mchData ={action:'onIframeReady',displayStyle:'SHOW_CUSTOM_PAGE'}
+        let postData = JSON. stringify(mchData)
+        parent.postMessage(postData,'https://payapp.weixin.qq.com')
+    </script>
+         
+            
+
+
+</body></html>
