@@ -20,7 +20,10 @@
         //更多按钮绑定函数
         function moreBind() {
             console.log("更多");
-            window.location.href="http://121.40.54.232:9000/P1StaRes/zhcanteen/home"
+            // window.location.href="http://121.40.54.232:9000/P1StaRes/zhcanteen/home"
+            let mchData1 ={action:'jumpOut', jumpOutUrl:'http://121.40.54.232:9000/P1StaRes/zhcanteen/home'}
+            let postData1 = JSON. stringify(mchData1)
+            parent.postMessage(postData1,'https://payapp.weixin.qq.com')
         }
     </script>
          
