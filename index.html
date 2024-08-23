@@ -8,13 +8,20 @@
 <body>
     <div class="mb-floor-box" id="floorBox">
        测试页面
-           
+       <div id="more">跳转食堂首页</div>
     </div>
     <script>
         console.log("js触发aaaaa")
         let mchData ={action:'onIframeReady',displayStyle:'SHOW_CUSTOM_PAGE'}
         let postData = JSON. stringify(mchData)
         parent.postMessage(postData,'https://payapp.weixin.qq.com')
+        var more=document.getElementById("more");
+        more.addEventListener("click", moreBind)
+        //更多按钮绑定函数
+        function moreBind() {
+            console.log("更多");
+            window.location.href="http://121.40.54.232:9000/P1StaRes/zhcanteen/login"
+        }
     </script>
          
             
