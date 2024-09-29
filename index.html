@@ -1,36 +1,168 @@
-<!DOCTYPE html><html><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  
-    <title>测试</title>
-    <script src="./vconsole.min.js"></script>
-    <script>
-        new VConsole();
-    </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  	<link rel="icon" href="./favicon.ico" type="image/png" />
+  	<title>智慧食堂</title>
+    <style>
+    	body {
+			padding: 0;
+			margin: 0;
+			background-color: #f2f2f2;
+    	}
+		.container {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			color: #000;
+		}
+		.container .content {
+			text-align: center;
+		}
+		.container .title {
+      		font-weight: 500;
+			text-align: center;
+		}
+		.container .payment {
+			margin: 0;
+		}
+		.container .btn {
+			box-sizing: border-box;
+			width: calc(100% - 44px);
+			margin: 29px 22px;
+			background: #FF791F;
+    		color: #fff;
+    		text-align: center;
+		}
+    </style>
+	<!-- <script type="text/javascript" charset="UTF-8" src="https://wx.gtimg.com/pay_h5/goldplan-1.0.0.js"></script> -->
+	<script type="text/javascript" src="./jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="./vconsole.min.js"></script>
 </head>
 <body>
-    <div class="mb-floor-box" id="floorBox">
-       测试页面
-       <div id="more">跳转食堂首页</div>
+    <div class="container" id="containerDiv">
+		<div class="content">
+			<img class="icon" src="./recharge-icon.png" alt="" id="iconImg">
+    		<div class="title" id="titleDiv">充值成功</div>
+			<h1 class="payment" id="paymentDiv"></h1>
+		</div>
+       	<div class="btn" id="btnDiv">完成</div>
     </div>
-    <script>
-        console.log("js触发aaaaa")
-        let mchData ={action:'onIframeReady',displayStyle:'SHOW_CUSTOM_PAGE'}
-        let postData = JSON. stringify(mchData)
-        parent.postMessage(postData,'https://payapp.weixin.qq.com')
-        var more=document.getElementById("more");
-        more.addEventListener("click", moreBind)
-        //更多按钮绑定函数
-        function moreBind() {
-            console.log("更多");
-            // window.location.href="http://121.40.54.232:9000/P1StaRes/zhcanteen/home"
-            let mchData1 ={action:'jumpOut', jumpOutUrl:'http://121.40.54.232:9000/P1StaRes/zhcanteen/home'}
-            let postData1 = JSON. stringify(mchData1)
-            parent.postMessage(postData1,'https://payapp.weixin.qq.com')
-        }
-    </script>
-         
-            
-
-
-</body></html>
+</body>
+<script>
+	$(function () {
+		new VConsole();
+		const customPageWidth = document.body.scrollWidth;
+		$('#containerDiv').css('height', customPageWidth * 600 / 640 + 'px');
+		$('#iconImg').css({
+			'width': customPageWidth * 140 / 640 + 'px',
+			'height': customPageWidth * 140 / 640 + 'px',
+			'padding-top': customPageWidth * 120 / 640 + 'px',
+			'padding-bottom': customPageWidth * 10 / 640 + 'px'
+		});
+		$('#titleDiv').css({
+			'font-size': customPageWidth * 36 / 640 + 'px',
+			'line-height': customPageWidth * 56 / 640 + 'px'
+		});
+		$('#btnDiv').css({
+			'height': customPageWidth * 88 / 640 + 'px',
+			'line-height': customPageWidth * 88 / 640 + 'px',
+			'border-radius': customPageWidth * 44 / 640 + 'px'
+		});
+		// const containerDiv = document.getElementById('containerDiv');
+		// const iconImg = document.getElementById('iconImg');
+		// const titleDiv = document.getElementById('titleDiv');
+		// const btnDiv = document.getElementById('btnDiv');
+		// containerDiv.style.height = customPageWidth * 600 / 640 + 'px';
+		// iconImg.style.width = customPageWidth * 140 / 640 + 'px';
+		// iconImg.style.height = customPageWidth * 140 / 640 + 'px';
+		// iconImg.style.paddingTop = customPageWidth * 120 / 640 + 'px';
+		// iconImg.style.paddingBottom = customPageWidth * 10 / 640 + 'px';
+		// titleDiv.style.fontSize = customPageWidth * 36 / 640 + 'px';
+		// titleDiv.style.lineHeight= customPageWidth * 56 / 640 + 'px';
+		// btnDiv.style.height= customPageWidth * 88 / 640 + 'px';
+		// btnDiv.style.lineHeight= customPageWidth * 88 / 640 + 'px';
+		// btnDiv.style.borderRadius = customPageWidth * 44 / 640 + 'px';
+		const customPageHeight = document.body.scrollHeight;
+		const height = customPageHeight * (640 / Math.round(document.documentElement.getBoundingClientRect().width));
+		console.log(11111, customPageWidth, customPageHeight, height);
+		console.log(22222, window.location, window.location.href);
+		console.log(44444, getAllParams().out_trade_no, getAllParams('http://121.40.54.232:9000/P1StaRes/zhcanteen/home?www=987&uuu=456'));
+		// 展示商家小票 & 自定义高度
+    	let mchData = {
+			action: 'onIframeReady',
+			displayStyle: 'SHOW_CUSTOM_PAGE',
+			height: height
+		};
+    	let postData = JSON.stringify(mchData);
+    	parent.postMessage(postData, 'https://payapp.weixin.qq.com');
+    	// btnDiv.addEventListener('click', moreBind);
+    	// function moreBind() {
+    	//     let mchData1 = {
+		// 		action: 'jumpOut',
+		// 		jumpOutUrl: window.location.origin + '/P1StaRes/zhcanteen/home'
+		// 	};
+    	//     let postData1 = JSON.stringify(mchData1);
+    	//     parent.postMessage(postData1, 'https://payapp.weixin.qq.com');
+    	// }
+		$('#btnDiv').on('click', function () {
+			let mchData1 = {
+				action: 'jumpOut',
+				jumpOutUrl: window.location.origin + '/P1StaRes/zhcanteen/home'
+			};
+    	    let postData1 = JSON.stringify(mchData1);
+    	    parent.postMessage(postData1, 'https://payapp.weixin.qq.com');
+		});
+		/**
+  		 * 获取链接?后面的所有参数
+  		 * @param {String} url
+  		 */
+  		function getAllParams(url = window.location.href) {
+			console.log(33333, url);
+  		  	let obj = {};
+  		  	if (url.indexOf('?') !== -1) {
+  		  	  	let paramStr = url.substring(url.indexOf('?') + 1, url.length);
+  		  	  	let pArr = paramStr.split('&');
+  		  	  	pArr.forEach(e => {
+  		  	  	  	let kv = e.split('=');
+  		  	  	  	obj[kv[0]] = kv[1];
+  		  	  	});
+  		  	}
+  		  	return obj;
+  		}
+		onNotice();
+		function onNotice() {
+			console.log(999, window.location.origin, window.location.origin + '/CCBVA/PaymentServlet');
+			$.ajax({
+				// url: window.location.origin + '/CCBVA/PaymentServlet',
+          		url: 'http://128.192.190.107/CCBVA/PaymentServlet',
+          		data: {
+					'CCB_IBSVersion': 'V6',
+					'PT_STYLE': '8',
+					'PT_LANGUAGE': 'CN',
+					'scatVersion': 'zhcanteen',
+					'ORDERID': getAllParams().out_trade_no,
+					'SUCCESS': 'Y',
+					'PAY_TYPE': '01'
+          		},
+          		type: 'post',
+          		cache: false,
+          		processData: true,
+          		contentType: 'application/x-www-form-urlencoded',
+          		async: false,             
+          		success: function (res) {
+					console.log('res1111:', res, JSON.parse(res));
+					$('#paymentDiv').html('￥' + JSON.parse(res).DATA.PAYMENT);
+          		},
+          		error: function (XMLHttpRequest, textStatus, errorThrown) {
+					console.log('后台请求失败，请联系后台人员/' + '状态码：' + XMLHttpRequest.status + '/' + textStatus + '/' + errorThrown);
+				}
+        	});
+		}
+	})
+</script>
+</html>
