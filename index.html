@@ -19,13 +19,22 @@
 			align-items: center;
 			width: 100%;
 			color: #000;
+			height: 300px;
 		}
 		.container .content {
 			text-align: center;
 		}
+		.container .icon {
+      		width: 70px;
+			height: 70px;
+			padding-top: 60px;
+			padding-bottom: 5px;
+		}
 		.container .title {
       		font-weight: 500;
 			text-align: center;
+			font-size: 18px;
+			line-height: 28px;
 		}
 		.container .payment {
 			margin: 0;
@@ -37,42 +46,53 @@
 			background: #FF791F;
     		color: #fff;
     		text-align: center;
+			height: 44px;
+			line-height: 44px;
+			border-radius: 22px;
 		}
     </style>
-	<!-- <script type="text/javascript" charset="UTF-8" src="https://wx.gtimg.com/pay_h5/goldplan-1.0.0.js"></script> -->
+	<script type="text/javascript" charset="UTF-8" src="https://wx.gtimg.com/pay_h5/goldplan-1.0.0.js"></script>
 	<script type="text/javascript" src="./jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="./vconsole.min.js"></script>
 </head>
 <body>
-    <div class="container" id="containerDiv">
+    <!-- <div class="container" id="containerDiv">
 		<div class="content">
 			<img class="icon" src="./recharge-icon.png" alt="" id="iconImg">
     		<div class="title" id="titleDiv">充值成功</div>
 			<h1 class="payment" id="paymentDiv"></h1>
 		</div>
        	<div class="btn" id="btnDiv">完成</div>
+    </div> -->
+	<div class="container">
+		<div class="content">
+			<img class="icon" src="./recharge-icon.png" alt="">
+    		<div class="title">充值成功</div>
+			<h1 class="payment" id="paymentDiv"></h1>
+		</div>
+       	<div class="btn">完成</div>
     </div>
 </body>
 <script>
 	$(function () {
 		new VConsole();
-		const customPageWidth = document.body.scrollWidth;
-		$('#containerDiv').css('height', customPageWidth * 600 / 640 + 'px');
-		$('#iconImg').css({
-			'width': customPageWidth * 140 / 640 + 'px',
-			'height': customPageWidth * 140 / 640 + 'px',
-			'padding-top': customPageWidth * 120 / 640 + 'px',
-			'padding-bottom': customPageWidth * 10 / 640 + 'px'
-		});
-		$('#titleDiv').css({
-			'font-size': customPageWidth * 36 / 640 + 'px',
-			'line-height': customPageWidth * 56 / 640 + 'px'
-		});
-		$('#btnDiv').css({
-			'height': customPageWidth * 88 / 640 + 'px',
-			'line-height': customPageWidth * 88 / 640 + 'px',
-			'border-radius': customPageWidth * 44 / 640 + 'px'
-		});
+		// const customPageWidth = document.body.scrollWidth;
+		// $('#containerDiv').css('height', customPageWidth * 600 / 640 + 'px');
+		// $('#iconImg').css({
+		// 	'width': customPageWidth * 140 / 640 + 'px',
+		// 	'height': customPageWidth * 140 / 640 + 'px',
+		// 	'padding-top': customPageWidth * 120 / 640 + 'px',
+		// 	'padding-bottom': customPageWidth * 10 / 640 + 'px'
+		// });
+		// $('#titleDiv').css({
+		// 	'font-size': customPageWidth * 36 / 640 + 'px',
+		// 	'line-height': customPageWidth * 56 / 640 + 'px'
+		// });
+		// $('#btnDiv').css({
+		// 	'height': customPageWidth * 88 / 640 + 'px',
+		// 	'line-height': customPageWidth * 88 / 640 + 'px',
+		// 	'border-radius': customPageWidth * 44 / 640 + 'px'
+		// });
 		// const containerDiv = document.getElementById('containerDiv');
 		// const iconImg = document.getElementById('iconImg');
 		// const titleDiv = document.getElementById('titleDiv');
@@ -89,7 +109,7 @@
 		// btnDiv.style.borderRadius = customPageWidth * 44 / 640 + 'px';
 		const customPageHeight = document.body.scrollHeight;
 		const height = customPageHeight * (640 / Math.round(document.documentElement.getBoundingClientRect().width));
-		console.log(11111, customPageWidth, customPageHeight, height);
+		// console.log(11111, customPageWidth, customPageHeight, height);
 		console.log(22222, window.location, window.location.href);
 		console.log(44444, getAllParams().out_trade_no, getAllParams('http://121.40.54.232:9000/P1StaRes/zhcanteen/home?www=987&uuu=456'));
 		// 展示商家小票 & 自定义高度
